@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Webpack Example</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+<style>
+
+  body{
+
+    width: 100%;
+    height: 100%;
+
+    font: 10px sans-serif;
+
+margin:0px;
+padding: 0px;
+background: #1A2980; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #1A2980 , #26D0CE); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #1A2980 , #26D0CE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+
+  }
+
+
+
+
+   .de {
+     width: 190px;
+     height: 14px;
+     color: #f4f4f4;
+     font-weight:300;
+     margin-left: 5px;
+     display: inline-block;
+     overflow: hidden;
+     font-size: 1.2em;
+     text-align: right;
+     font-family: 'Roboto', sans-serif;
+     padding-bottom: 2px;
+     border-left:1px solid white;
+
+   }
+   .padding{
+     width:100%;
+
+
+   }
+
+   .ret {
+     display: inline-block;
+     background-color: #225378;
+     color: white;
+     height: 14px;
+     font-size: 1.25em;
+     margin-left: 7px;
+     overflow: hidden;
+     opacity: 1;
+     text-shadow: 0 -1px 1px #0b3057;
+     border-top-right-radius: 3px;
+     border-bottom-right-radius: 3px;
+     /*   button iTune   */
+     border-top: 1px solid #4081af;
+     border-right: 1px solid #2e69a3;
+     border-bottom: 1px solid #20559a;
+     border-left: 1px solid #2e69a3;
+     -webkit-transition: all 0.1ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+     //transition: all 0.1ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+   }
+
+   .ret:hover {
+     border-right: 1px solid #165899;
+     border-bottom: 1px solid #07428f;
+     border-left: 1px solid #165899;
+     -moz-box-shadow: inset 0 0px 0 0 #62b1e9;
+     -webkit-box-shadow: inset 0 0px 0 0 #62b1e9;
+     cursor: pointer;
+   }
+
+
+
+
+    .hover1 {
+     -webkit-transition: all 0.01;
+     /* Safari */
+     transition: all 0.01s;
+     transition: all 0.3ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+     cursor: pointer;
+
+     width: 99.5%;
+    // background:#212121;
+     height: 15px;
+    margin-top: 2px;
+    transition: all 0.2s linear;
+
+   }
+
+   .chart {
+   	background: rgba(0,0,0, .8);
+     width: 100%;
+     font: 10px sans-serif;
+
+     padding: 0px;
+     z-index: -100;
+     overflow:hidden;
+     min-height: 100%:
+   }
+
+
+.fontHed{
+  font-weight:200;
+
+}
+
+
+   #header {
+
+     list-style: none;
+     padding: 10px auto;
+     margin-top:15px;
+     height: 30px;
+     width: 100%;
+
+   }
+
+   .source {
+     margin: 10px 0px;
+     margin-left: 10px;
+   }
+
+   #header li {
+     float: center;
+     color: black;
+     text-align: center;
+
+     font-family: 'Roboto', sans-serif;
+     font-weight: 400;
+   }
+
+   header {
+     display: inline-flexbox;
+     align-items: center;
+display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+
+    /* background: rgba(12, 115, 139, 0.80);*/
+     background: linear-gradient(120deg, rgb(12, 62, 141), #04d9c0);
+     /*   background: #1B77B2;*/
+
+     text-shadow: 0 -1px 1px #0b3057;
+     border-bottom: 1px solid rgba(255,155, 255, 0.8);
+
+     width: 100%;
+     float: center;
+     height: 35px;
+     padding: 0px;
+         //font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+   }
+
+   ul {
+
+     float: center;
+     width: 100%;
+     text-align: center;
+   }
+   a {
+     color: #fff;
+     text-decoration: none;
+   }
+   ul li {
+     float: center;
+     margin-right: 5%;
+     display: inline-block;
+     color: #A2EE9F;
+     font-family: GothamRounded;
+     font-size: 18px;
+     font-weight: 700;
+     text-align: center;
+   }
+
+   ul li  {
+
+     color: red;
+
+   }
+
+   ul li a:hover {
+     color: #A2EE9F;
+   }
+
+
+   #header div h1 {
+     color: black;
+     border: none;
+   }
+
+   .hover1:hover {
+     opacity:.9;
+     background: rgba(0, 0, 0, .3);
+
+     transform:translate3d(4px,0,0);
+
+   }
+
+   .hover1:active{
+     transition: .0010s linear;
+     background: rgba(0,0,0, .9);
+     opacity:.2;
+   }
+   .opacity{
+
+     opacity:1;
+   }
+
+   .display {
+     display: block;
+     float: none;
+     width: 100%;
+     padding-left: 0px;
+     -webkit-animation-duration: 1.4s;
+     -webkit-animation-delay: 0.0s;
+   }
+
+
+@-webkit-keyframes thunder{
+  0%{
+    opacity:0;
+    -webkit-transform:translate3d(750px,0px,0);
+  }
+  100%{
+    opacity:1;
+    -webkit-transform:translate3d(0px,0,0) ;
+  }
+}
+@keyframes thunder{
+  0%{
+    opacity:0;
+    transform:translate3d(50px,0px,0);
+  }
+  100%{
+    opacity:1;
+    transform:translate3d(0px,0,0) ;
+  }
+}
+
+   .fadeDesno{
+
+  -webkit-animation-name: thunder;
+  -webkit-animation-duration: 500ms;
+  -webkit-animation-fill-mode: both;
+    -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+
+  animation-name: thunder;
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+    animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);;
+
+}
+   .obrus {
+     position: relative;
+    // background: rgba(0, 0, 0, .8);
+     float: left;
+     display: block;
+     width: 65.3%; //67.2
+     -webkit-user-select: none;
+     padding-top: 20px;
+     transition: background 3.5s ease-out;
+     overflow:hidden;
+
+
+   }
+.e {
+
+     font-family: 'Roboto', sans-serif;
+     font-weight: 100px;
+     background: rgba(0, 0, 0, .1);
+     background-size: cover;
+     float: left;
+     width: 34.7%;
+     display: block;
+
+   }
+   .e1{
+  animation: trans 1s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+
+}
+   .headermin {
+     width: 100%;
+   }
+     .kocka33 h4 {
+     font-size: 1.2em;
+   }
+
+   .kocka33 {
+     height: 100%;
+     margin-top: 10px;
+     width: 100%;
+   }
+
+
+     .kocka3 {
+     border-left: none;
+     border-right: none;
+     text-align: center;
+     float: left;
+     background: rgba(27, 120, 162, 0.1);
+     border-radius: 2px;
+     width: 100%;
+     height: 40px;
+     overflow: hidden;
+     underline: none;
+     -webkit-animation-duration: 0.5s;
+     -webkit-animation-delay: 0.0s;
+   }
+
+   .kocka3 a {
+     link-underline: none;
+   }
+   .font{
+  font-weight:100;
+}
+
+.center1 {
+     text-align: center;
+     width: 100%;
+   }
+
+    .gam5 {
+     border-radius: 2px;
+     float: left;
+     text-align: center;
+     display: inline-block;
+     width: 10%;
+     background-color: transparent;
+     height: 38px;
+     cursor: pointer;
+     border: 1px solid rgba(60%, 80%, 100%, .2);
+     margin: 2px;
+     background: rgba(0, 0, 0, .2);
+   }
+
+   .gam5 img {
+     padding: 3px;
+   }
+
+   .gam5:active {
+     background-color: #00334D;
+   }
+
+   .gam6 {
+     border-radius: 2px;
+     float: left;
+     display: inline-block;
+     width: 10%;
+     background-color: transparent;
+     height: 38px;
+     cursor: pointer;
+     text-align: center;
+     border: 1px solid rgba(60%, 80%, 100%, .2);
+     margin: 2px;
+     background: rgba(0, 0, 0, .2);
+   }
+
+   .gam6 img {
+     padding: 3px;
+   }
+
+   .gam6:active {
+     background-color: #00334D;
+   }
+
+   .clear {
+     clear: both;
+   }
+   .miniHeader{
+
+  color:white;
+  width:100%;
+  text-align:center;
+}
+
+   .ann {
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+   }
+
+   .data {
+     padding: 1px;
+     margin-top: 0px;
+     font-size: 1.3em;
+     overflow: hidden;
+     opacity: 0.8;
+     padding-top: 30px;
+   }
+
+   .clearLeft {
+     clear: left;
+   }
+
+ .time {
+     width: 12%;
+     height: 40px;
+     display: inline-block;
+     float: left;
+     margin-top: 0px;
+     line-height: 39px;
+     font-size: 0.7em;
+     color: white;
+     cursor: pointer;
+     text-align: center;
+     margin-right: 1px;
+     background: rgba(255, 255, 255, 0.1);
+     border-top: 1px solid rgba(60%, 80%, 100%, .2);
+     border-top-left-radius: 4px;
+    -webkit-transition: background 0.2s linear 0s, color 0.2s linear 0s, padding 0.2s linear 0s;
+     transition: background 0.2s linear 0s, color 0.2s linear 0s, padding 0.2s linear 0s;
+   }
+
+   .tution {
+     cursor: pointer;
+     height: 40px;
+     width: 10%;
+     display: inline-block;
+     float: left;
+     font-size: 0.7em;
+     color: white;
+     line-height: 39px;
+     text-align: center;
+     background: rgba(255, 255, 255, 0.1);
+     margin-right: 1px;
+     border-top: 1px solid rgba(60%, 80%, 100%, .2);
+     -webkit-transition: background 0.2s linear 0s, color 0.2s linear 0s, padding 0.2s linear 0s;
+     transition: background 0.2s linear 0s, color 0.2s linear 0s, padding 0.2s linear 0s;
+   }
+
+.font{
+  font-weight:100;
+}
+   .hidden {
+     display: none;
+   }
+
+      .red {
+     border-top: 1px solid rgba(60%, 80%, 100%, .2);
+     border-top-right-radius: 4px;
+     padding: 5px, 5px, 5px, 5px;
+     width: 76%;
+     color: #d9d061;
+     display: inline-block;
+     overflow: hidden;
+     float: left;
+     height: 40px;
+     background-color: transparent;
+
+   /*  background:rgba(27, 120, 162, 0.3);*/
+     margin-bottom: 1px;
+     line-height: 31px;
+     -webkit-transition: background 0.2s linear 0s, color 0.2s linear 0s, padding 0.2s linear 0s;
+     transition: background 0.2s linear 0s, color 0.2s linear 0s, padding 0.2s linear 0s;
+   }
+
+   .red:hover {
+     cursor: pointer;
+     color: white;
+     padding-left: 4px;
+     background: rgba(7, 104, 155, 0.9);
+   }
+
+</style>
+<body>
+  <!-- React app will be injected into the following `div` element: -->
+  <div id="app"></div>
+  <!-- Include bundled JavaScript: -->
+
+<script src="bundle.js"></script></body>
+</html>
