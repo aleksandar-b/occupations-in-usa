@@ -13,7 +13,7 @@ var Header = function(prop){
     <ul id="header">
 
 <li><Link className="fontHed" to="/list">List</Link></li>
-  <li><Link className="fontHed" to="/user"><i className="fa fa-bar-chart"></i>Mentor</Link></li>
+  <li><Link className="fontHed" to="/mentor"><i className="fa fa-bar-chart"></i>Mentor</Link></li>
   <li><a className="fontHed" href="/"><span className="white  font"> </span> Occupations In USA</a></li>
   <li><a className="fontHed" href="#"><i className="fa fa-user"></i>
 Login</a></li>

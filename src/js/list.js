@@ -35,6 +35,7 @@ class ListContainer extends React.Component {
 		var sidebar = document.querySelector('.e');
 		var rect = sidebar.getBoundingClientRect();
 		sidebar.style.height = window.innerHeight + 'px';
+		var cube = document.querySelector(".sk-cube-grid");
 		if (this.state.opacity) {
 			document.querySelector('.obrus').classList.add('opacity');
 		}
@@ -57,14 +58,21 @@ class ListContainer extends React.Component {
 		console.log(this.state.friends.length);
 
 		if (!this.props.json) {
+			var myHeaders = new Headers();
+myHeaders.append('Content-Type', 'text/json');
 
-			fetch('https://gist.githubusercontent.com/samosale/bc0920114e48c1ccccef/raw/d80f635e60ecb9a3680cdb8f9bb6f52ee638e6f6/gistfile1.json')
+			
+
+			fetch('https://gist.githubusercontent.com/samosale/bc0920114e48c1ccccef/raw/7f5e57a0566161732dc555b5aa4b052747e43f78/gistfile1.json')
 				.then((response) => {
 
 					return response.json()
 				}).then((json) => {
 				//	this.props.glState(json);
+				cube.style.display = "none";
+				
 					fade.classList.add('Ifade');
+					
 					this.setState({
 						friends: json,
 						opacity: true,
@@ -99,9 +107,7 @@ class ListContainer extends React.Component {
 	render() {
 
 
-		var friends = this.state.friends.sort(function(a, b) {
-			return parseFloat(b['COL 9'].replace(/>=/i, '').slice(1)) - parseFloat(a['COL 9'].replace(/>=/i, '').slice(1));
-		}).map(function(val, ind) {
+		var friends = this.state.friends.map(function(val, ind) {
 
 			return <div key = {
 				ind+ind
@@ -110,10 +116,10 @@ class ListContainer extends React.Component {
 				this.props.pushTo
 			}
 			email = {
-				val['COL 1']
+				val['name']
 			}
 			salary = {
-				val['COL 9'].replace(/>=/i, '')
+				val['salary'].replace(/>=/i, '')
 			}
 			index = {
 				ind
@@ -130,8 +136,19 @@ class ListContainer extends React.Component {
 
 		}, this);
 
-		return ( <div className="IfadeI" > {
-				friends
+		return ( <div className="IfadeI" > 
+			<div className="sk-cube-grid">
+  <div className="sk-cube sk-cube1"></div>
+  <div className="sk-cube sk-cube2"></div>
+  <div className="sk-cube sk-cube3"></div>
+  <div className="sk-cube sk-cube4"></div>
+  <div className="sk-cube sk-cube5"></div>
+  <div className="sk-cube sk-cube6"></div>
+  <div className="sk-cube sk-cube7"></div>
+  <div className="sk-cube sk-cube8"></div>
+  <div className="sk-cube sk-cube9"></div>
+</div>
+				{friends
 			} </div>
 
 		);
