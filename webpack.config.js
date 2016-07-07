@@ -1,7 +1,9 @@
+var fs = require('fs');
 var path = require('path');
 var srcPath = path.join(__dirname, 'src');
 var buildPath = path.join(__dirname, 'dist');
 var webpack = require('webpack');
+
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/src/index.html',

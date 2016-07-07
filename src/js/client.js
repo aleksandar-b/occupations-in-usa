@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Friends from './friends';
+import ListMain from './list';
 import Header from './header';
 import Sidebar from './sidebar';
 import Second from './second';
-import { Router, Route, Link, browserHistory } from 'react-router'
+import DefaultComponent from './defaultComponent';
 
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
+var DefaultRoute = Router.DefaultRoute;
 
 class Main extends React.Component {
 
@@ -71,9 +73,10 @@ return(
 
 const app = document.getElementById('app');
 ReactDOM.render(<Router history={browserHistory}>
-<Route path="/" component={Main} >
-  <Route path="/sam" pushTo={parent.pushToState}  component={Friends} />
+<Route path="/"  component={Main} >
+  <IndexRoute component={ListMain}/>
+  <Route path="/list" pushTo={parent.pushToState}  component={ListMain} />
   <Route path="/user" pushTo={77} component={Second} />
-  <Route path="/user/:occupation" pushTo={77} component={Occupation} />
+  <Route path="/ocupation/:occupation" pushTo={77} component={Occupation} />
 </Route>
   </Router>, app);
