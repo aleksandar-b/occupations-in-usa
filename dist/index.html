@@ -9,8 +9,7 @@
 
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 <style>
-
-body {
+  body {
     width: 100%;
     height: 100%;
     font: 10px sans-serif;
@@ -41,10 +40,10 @@ body {
   
   .padding {
     width: 100%;
-  
   }
+  
   .Ifade {
-  opacity:0;
+    opacity: 0;
     animation: fadeIn 1s ease-out;
     animation-fill-mode: forwards;
   }
@@ -55,7 +54,7 @@ body {
       opacity: 0;
     }
     100% {
-      transform:translateX(0px);
+      transform: translateX(0px);
       opacity: 1;
     }
   }
@@ -96,7 +95,6 @@ body {
     transition: all 0.3ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
     cursor: pointer;
     width: 99.5%;
-
     height: 15px;
     margin-top: 2px;
     transition: all 0.2s linear;
@@ -156,7 +154,6 @@ body {
     float: center;
     height: 35px;
     padding: 0px;
-
     font-weight: 300;
   }
   
@@ -209,7 +206,6 @@ body {
   
   .opacity {
     opacity: 1;
-
   }
   
   .display {
@@ -259,11 +255,10 @@ body {
   
   .obrus {
     position: relative;
-
     float: left;
     display: block;
-    min-height:100vh;
-    width: 65.3%; 
+    min-height: 100vh;
+    width: 65.3%;
     -webkit-user-select: none;
     padding-top: 20px;
     transition: all 3.5s ease-out;
@@ -467,134 +462,295 @@ body {
     padding-left: 4px;
     background: rgba(7, 104, 155, 0.9);
   }
-
-.sk-cube-grid {
-  width: 40px;
-  height: 40px;
-  margin: 300px auto;
-}
-
-.sk-cube-grid .sk-cube {
   
-
-  width: 33%;
-  height: 33%;
-  background-color: rgba(27, 138, 150, 0.97);
-  float: left;
-  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
-          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
-}
-.sk-cube-grid .sk-cube1 {
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s; }
-.sk-cube-grid .sk-cube2 {
-  -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s; }
-.sk-cube-grid .sk-cube3 {
-  -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s; }
-.sk-cube-grid .sk-cube4 {
-  -webkit-animation-delay: 0.1s;
-          animation-delay: 0.1s; }
-.sk-cube-grid .sk-cube5 {
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s; }
-.sk-cube-grid .sk-cube6 {
-  -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s; }
-.sk-cube-grid .sk-cube7 {
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s; }
-.sk-cube-grid .sk-cube8 {
-  -webkit-animation-delay: 0.1s;
-          animation-delay: 0.1s; }
-.sk-cube-grid .sk-cube9 {
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s; }
-
-@-webkit-keyframes sk-cubeGridScaleDelay {
-  0%, 70%, 100% {
-    -webkit-transform: scale3D(1, 1, 1);
-            transform: scale3D(1, 1, 1);
-  } 35% {
-    -webkit-transform: scale3D(0, 0, 1);
-            transform: scale3D(0, 0, 1); 
+  .sk-cube-grid {
+    width: 40px;
+    height: 40px;
+    margin: 300px auto;
   }
-}
-
-@keyframes sk-cubeGridScaleDelay {
-  0%, 70%, 100% {
-    -webkit-transform: scale3D(1, 1, 1);
-            transform: scale3D(1, 1, 1);
-  } 35% {
-    -webkit-transform: scale3D(0, 0, 1);
-            transform: scale3D(0, 0, 1);
-  } 
-}
-
-
-.wrapper {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100vw;
-      height: 130vh;
-      background: rgb(21, 50, 80);
-      opacity: 1;
-      z-index: 2200;
+  
+  .sk-cube-grid .sk-cube {
+    width: 33%;
+    height: 33%;
+    background-color: rgba(27, 138, 150, 0.97);
+    float: left;
+    -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+    animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+  }
+  
+  .sk-cube-grid .sk-cube1 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+  }
+  
+  .sk-cube-grid .sk-cube2 {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+  }
+  
+  .sk-cube-grid .sk-cube3 {
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+  }
+  
+  .sk-cube-grid .sk-cube4 {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+  }
+  
+  .sk-cube-grid .sk-cube5 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+  }
+  
+  .sk-cube-grid .sk-cube6 {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+  }
+  
+  .sk-cube-grid .sk-cube7 {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+  }
+  
+  .sk-cube-grid .sk-cube8 {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+  }
+  
+  .sk-cube-grid .sk-cube9 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+  }
+  
+  @-webkit-keyframes sk-cubeGridScaleDelay {
+    0%,
+    70%,
+    100% {
+      -webkit-transform: scale3D(1, 1, 1);
+      transform: scale3D(1, 1, 1);
+    }
+    35% {
+      -webkit-transform: scale3D(0, 0, 1);
+      transform: scale3D(0, 0, 1);
+    }
+  }
+  
+  @keyframes sk-cubeGridScaleDelay {
+    0%,
+    70%,
+    100% {
+      -webkit-transform: scale3D(1, 1, 1);
+      transform: scale3D(1, 1, 1);
+    }
+    35% {
+      -webkit-transform: scale3D(0, 0, 1);
+      transform: scale3D(0, 0, 1);
+    }
+  }
+  
+  .wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 130vh;
+    background: rgb(21, 50, 80);
+    opacity: 1;
+    z-index: 2200;
   }
   
   .circle {
-      fill: yellow;
+    fill: yellow;
   }
   
   .circleEffect {
-        will-change: transform;
-      background: -webkit-linear-gradient(30deg, rgb(12, 62, 141), #04d9c0);
-      background: -o-linear-gradient(30deg, rgb(12, 62, 141), #04d9c0);
-      background: linear-gradient(120deg, rgb(12, 62, 141), #04d9c0);
-        width: 240vw;
-        height: 240vw;
-        opacity: 1;
-        margin-left: -120vw;
-        margin-top: -120vw;
-        border-radius: 100%;
-        position: absolute;
-        z-index: 2100;
-        animation: ripple 1000ms ease-in-out;
-        transition: opacity .7s ease;
-    }
-  
-  .circleEffect1 {
-      will-change: transform;
-      background: rgba(0, 0, 0, 1);
-      width: 240vw;
-      height: 240vw;
-      opacity: 1;
-      margin-left: -120vw;
-      margin-top: -120vw;
-      border-radius: 100%;
-      position: absolute;
-     
-      animation: ripple 2600ms ease-in-out;
-      transition: opacity 1.4s ease;
+    will-change: transform;
+    background: -webkit-linear-gradient(30deg, rgb(12, 62, 141), #04d9c0);
+    background: -o-linear-gradient(30deg, rgb(12, 62, 141), #04d9c0);
+    background: linear-gradient(120deg, rgb(12, 62, 141), #04d9c0);
+    width: 240vw;
+    height: 240vw;
+    opacity: 1;
+    margin-left: -120vw;
+    margin-top: -120vw;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 2100;
+    animation: ripple 600ms ease-in-out;
   }
+  
+
   
   @keyframes ripple {
-      0% {
-          transform: scale(0);
-      }
-      100% {
-          transform: scale(1);
-      }
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .User {
+    transition: box-shadow .2s;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .User:hover {
+    display: inline-block;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+  }
+  .User:active {
+box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0, .1);
   }
 
+  .dropdown{
+
+position:absolute;
+top:32px;
+background: linear-gradient(120deg, #05C1B8, #04D7BF);
+margin-left:-5px;
+padding: 3px;
+border-radius: 4px;
+  }
+  .dropdown p {
+
+margin:0px;
+
+  }
+.dropdown p:hover {
+
+background: rgba(0,0,0, .2);
+}
+
+  .contact {
+    position: absolute;
+    top: 49.99%;
+    left: 49.99%;
+    transform: translateX(-50%);
+    -webkit-font-smoothing: subpixel-antialiased;
+    animation: down 1s ease-out;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes down {
+    0% {
+      opacity: 0;
+      transform: translate3d(-50.1%, -65.1%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(-50.1%, -80.1%, 0);
+    }
+  }
+  
+  .contact .inner {
+    -moz-box-shadow: 1px 1px 10px rgba(47, 47, 47, 0.2) inset;
+    -webkit-box-shadow: 1px 1px 10px rgba(47, 47, 47, 0.2) inset;
+    box-shadow: 1px 1px 10px rgba(47, 47, 47, 0.2) inset;
+    background: transparent;
+    border-radius: 5px;
+    display: block;
+    font-family: Helvetica, Arial, sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    border-right: 1px solid rgba(255, 255, 255, 0.10);
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    width: 280px;
+  }
+  
+  .contact .inner h1 {
+    color: #36383c;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .contact .inner p {
+    color: #7c818b;
+    margin: 0 0 30px 0;
+    font-size: 12px;
+    font-weight: 100;
+    letter-spacing: 1px;
+  }
+  
+  .contact .inner input {
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: rgba(229, 231, 233, 0.05);
+    border: none;
+    color: white;
+    display: block;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    padding: 15px;
+    width: 100%;
+  }
+  
+  .contact .inner input.email {
+    -moz-box-shadow: 0px 2px 3px rgba(47, 47, 47, 0.1) inset;
+    -webkit-box-shadow: 0px 2px 3px rgba(47, 47, 47, 0.1) inset;
+    box-shadow: 0px 2px 3px rgba(47, 47, 47, 0.1) inset;
+    border: 1px solid #adaeb0;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .contact .inner input.pass {
+    -moz-box-shadow: 0px -1px 3px rgba(47, 47, 47, 0.1) inset;
+    -webkit-box-shadow: 0px -1px 3px rgba(47, 47, 47, 0.1) inset;
+    box-shadow: 0px -1px 3px rgba(47, 47, 47, 0.1) inset;
+    border: 1px solid #adaeb0;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    margin-top: -2px;
+  }
+  
+  .contact .inner input:focus {
+    color: white;
+    background: transparent;
+    outline: none;
+  }
+  
+  .contact .inner input[type="submit"] {
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY5ZDJjNiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzQ3YjdhNSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #69d2c6), color-stop(100%, #47b7a5));
+    background-image: -moz-linear-gradient(#69d2c6, #47b7a5);
+    background-image: -webkit-linear-gradient(#69d2c6, #47b7a5);
+    background-image: linear-gradient(#69d2c6, #47b7a5);
+    border: 1px solid #2a8b7b;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    text-shadow: 0px 1px 2px rgba(47, 47, 47, 0.9);
+  }
+  
+  .contact .inner input[type="submit"]:active {
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQ3YjdhNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzY5ZDJjNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+    background-size: 100%;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #47b7a5), color-stop(100%, #69d2c6));
+    background-image: -moz-linear-gradient(#47b7a5, #69d2c6);
+    background-image: -webkit-linear-gradient(#47b7a5, #69d2c6);
+    background-image: linear-gradient(#47b7a5, #69d2c6);
+  }
 </style>
+
 <body>
   <!-- React app will be injected into the following `div` element: -->
   <div id="app"></div>
   <!-- Include bundled JavaScript: -->
-
-<script type="text/javascript" src="./bundle.js"></script></body>
+<script type="text/javascript" src="bundle.js"></script></body>
 
 </html>

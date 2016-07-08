@@ -41,7 +41,7 @@ class Item extends React.Component {
 
 				this.parentNode.removeChild(this);
 
-			}.bind(this), 1500)
+			}.bind(this), 600)
 
 
 		})

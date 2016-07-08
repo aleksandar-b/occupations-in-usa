@@ -77,7 +77,6 @@ var firebaseUtils = {
         console.log(message);
         cb(message);
       } else {
-        console.log("45646346346");
           this.loginWithPW(user, function(authData){
             addNewUserToFB({
               email: user.email,
@@ -89,7 +88,7 @@ var firebaseUtils = {
     }.bind(this));
   },
   loginWithPW: function(userObj, cb, cbOnRegister){
-    var that = this;
+
     ref.authWithPassword(userObj, function(err, authData){
       if (err) {
         var message = genErrorMsg(err);
@@ -102,13 +101,12 @@ var firebaseUtils = {
       } else {
         authData.email = userObj.email;
         cachedUser = authData;
-       // this.onChange(true);
+       this.onChange(true);
         if (cbOnRegister) {
      
           cb(authData);
           cbOnRegister(false, authData);
         } else {
-          console.log(111111111)
           cb(false, authData);
         }
       }
