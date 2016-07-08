@@ -9,7 +9,8 @@
 
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 <style>
-  body {
+
+body {
     width: 100%;
     height: 100%;
     font: 10px sans-serif;
@@ -77,7 +78,6 @@
     border-bottom: 1px solid #20559a;
     border-left: 1px solid #2e69a3;
     -webkit-transition: all 0.1ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    //transition: all 0.1ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   
   .ret:hover {
@@ -96,7 +96,7 @@
     transition: all 0.3ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
     cursor: pointer;
     width: 99.5%;
-    // background:#212121;
+
     height: 15px;
     margin-top: 2px;
     transition: all 0.2s linear;
@@ -156,7 +156,7 @@
     float: center;
     height: 35px;
     padding: 0px;
-    //font-family: 'Roboto', sans-serif;
+
     font-weight: 300;
   }
   
@@ -259,11 +259,11 @@
   
   .obrus {
     position: relative;
-    // background: rgba(0, 0, 0, .8);
+
     float: left;
     display: block;
     min-height:100vh;
-    width: 65.3%; //67.2
+    width: 65.3%; 
     -webkit-user-select: none;
     padding-top: 20px;
     transition: all 3.5s ease-out;
@@ -549,21 +549,21 @@
   }
   
   .circleEffect {
-      will-change: transform;
-      background: -webkit-linear-gradient(to left, #1A2980, #26D0CE);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(120deg, rgb(12, 62, 141), #04d9c0);
-      width: 240vw;
-      height: 240vw;
-      opacity: 1;
-      margin-left: -120vw;
-      margin-top: -120vw;
-      border-radius: 100%;
-      position: absolute;
-      z-index: 2100;
-      animation: ripple 1000ms ease-in-out;
-      transition: opacity .7s ease;
-  }
+        will-change: transform;
+      background: -webkit-linear-gradient(30deg, rgb(12, 62, 141), #04d9c0);
+      background: -o-linear-gradient(30deg, rgb(12, 62, 141), #04d9c0);
+      background: linear-gradient(120deg, rgb(12, 62, 141), #04d9c0);
+        width: 240vw;
+        height: 240vw;
+        opacity: 1;
+        margin-left: -120vw;
+        margin-top: -120vw;
+        border-radius: 100%;
+        position: absolute;
+        z-index: 2100;
+        animation: ripple 1000ms ease-in-out;
+        transition: opacity .7s ease;
+    }
   
   .circleEffect1 {
       will-change: transform;
@@ -575,7 +575,7 @@
       margin-top: -120vw;
       border-radius: 100%;
       position: absolute;
-      // z-index: 100;
+     
       animation: ripple 2600ms ease-in-out;
       transition: opacity 1.4s ease;
   }
@@ -590,12 +590,11 @@
   }
 
 </style>
-
 <body>
   <!-- React app will be injected into the following `div` element: -->
   <div id="app"></div>
   <!-- Include bundled JavaScript: -->
 
-<script type="text/javascript" src="bundle.js"></script></body>
+<script type="text/javascript" src="./bundle.js"></script></body>
 
 </html>

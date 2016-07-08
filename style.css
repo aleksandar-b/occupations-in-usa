@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>React Webpack Example</title>
-</head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-<style>
-
-    body {
+body {
     width: 100%;
     height: 100%;
     font: 10px sans-serif;
@@ -588,17 +576,3 @@
           transform: scale(1);
       }
   }
-
-  .User:hover {
-  display: inline-block;
-background: rgba(0, 0, 0, .1);
-
-  }
-</style>
-<body>
-  <!-- React app will be injected into the following `div` element: -->
-  <div id="app"></div>
-  <!-- Include bundled JavaScript: -->
-</body>
-
-</html>
