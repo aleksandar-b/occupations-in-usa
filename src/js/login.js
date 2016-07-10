@@ -4,11 +4,24 @@ var Login = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
+  
+
   getInitialState: function(){
     return {
       error: false,
       displaySecond:(this.props.register)?"block":"none"
     }
+  },
+
+    componentWillMount:function() {
+    this.props.loadingCallback(true);
+  },
+  
+  componentDidMount:function() {
+    this.props.loadingCallback(false);
+  },
+   componentWillUnmount:function() {
+	  this.props.loadingCallback(true);
   },
   handleSubmit: function(e){
     e.preventDefault();
@@ -40,7 +53,7 @@ var Login = React.createClass({
 		<input className="pass" type="password" ref="pw" placeholder="Password" />
 
     <input style={{display:this.state.displaySecond}} className="pass2" type="password" ref="pw2" placeholder="Password" />
-
+{errors}
 		<input className="submit" type="submit" value="Login" />
 	</div>
 </form>

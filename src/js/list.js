@@ -30,6 +30,11 @@ class ListContainer extends React.Component {
 		return this.state.shouldRec;
 	}
 
+	componentWillUnmount() {
+		this.props.loadingCallback(true)
+	}
+	
+
 	componentDidMount() {
 
 		var sidebar = document.querySelector('.e');
@@ -55,7 +60,6 @@ class ListContainer extends React.Component {
 				sidebar.style.position = 'relative';
 			}
 		});
-		console.log(this.state.friends.length);
 
 		if (!this.props.json) {
 			var myHeaders = new Headers();
@@ -70,6 +74,7 @@ myHeaders.append('Content-Type', 'text/json');
 				}).then((json) => {
 				//	this.props.glState(json);
 				cube.style.display = "none";
+				this.props.loadingCallback(false);
 				
 					fade.classList.add('Ifade');
 					
@@ -112,6 +117,8 @@ myHeaders.append('Content-Type', 'text/json');
 			return <div key = {
 				ind+ind
 			} > < Item 
+			loadingCallback ={ ()=>this.props.loadingCallback(true)}
+
 			pushToPar = {
 				this.props.pushTo
 			}
@@ -136,7 +143,13 @@ myHeaders.append('Content-Type', 'text/json');
 
 		}, this);
 
-		return ( <div className="IfadeI" > 
+		return ( 
+			<div>
+			<div style={{margin:"10 auto", textAlign:"center"}}>
+			<h2 >820 Occupations in USA</h2>
+			</div>
+			<div style={{padding:"20px"}} className="IfadeI" > 
+		
 			<div className="sk-cube-grid">
   <div className="sk-cube sk-cube1"></div>
   <div className="sk-cube sk-cube2"></div>
@@ -150,7 +163,7 @@ myHeaders.append('Content-Type', 'text/json');
 </div>
 				{friends
 			} </div>
-
+</div>
 		);
 
 

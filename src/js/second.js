@@ -7,7 +7,20 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 
 constructor(props){
 super(props)
+
 }
+
+  componentWillMount() {
+    this.props.loadingCallback(true);
+  }
+  componentWillUnmount() {
+	  this.props.loadingCallback(true);
+  }
+  
+  componentDidMount() {
+    this.props.loadingCallback(false);
+  }
+  
 handleClick(){
 
 	console.log(this.props.email);

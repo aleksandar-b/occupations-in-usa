@@ -1,6 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Results from './results';
+import {Tab, TabGroup} from 'material-tabs';
+import Ink from 'react-ink';
+ 
+
+var NavigationTabs = class NavigationTabs extends React.Component {
+  render() {
+      var groups =  <TabGroup>
+        <Tab>
+          Schools
+        </Tab>
+      <div style={{position:"relative",width:"100%",height:"100%"}}>
+        <Ink/>
+        
+        <Tab>
+          Videos
+        </Tab>
+        </div>
+        <Tab>
+          Mentors
+        </Tab>
+         <Tab>
+          VR
+        </Tab>
+      </TabGroup>;
+    return (
+     <div>{groups}</div>
+    );
+  }
+};
+
 
 export default class Sidebar extends React.Component {
 	
@@ -44,9 +74,7 @@ export default class Sidebar extends React.Component {
             
             <div className="center1">
                     <div className="gam3" title="Schools/Courses"></div>
-                    <div className="gam5" title="Online Video Tutorials - Ciriculums" ></div>
-                    <div className="gam5" title="Virtual Reality" ></div>
-                     <div className="gam6" title="Mentors" ></div>
+               <NavigationTabs/>
 
             
             </div>

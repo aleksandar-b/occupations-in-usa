@@ -13,22 +13,27 @@ var email = storage.password.email || "";
 
 }
 
-console.log("header")
-console.log(prop.isLoggedIn,"header")
+
 var isLoggedIn = (prop.isLoggedIn)?"none":"inline-block";
 var menuDisplay = (prop.isLoggedIn)?"block":"none";;
-
+console.log(prop.loading);
 var display = (prop.flagToggle)?"block":"none";
 
-var handleClick = () => { prop.toggleMenu()};
+var handleClick = () => { 
+    
+    prop.toggleMenu()
+};
 var logOut = () => {
 
-    prop.logOutProba()
+    prop.logOutProba();
+ window.location.href = "/";
 };
 
 
 
 	return (
+        <div>
+      
 <header>
     <ul id="header">
 
@@ -46,7 +51,16 @@ var logOut = () => {
 
     </span></ul>
     </header>
+    <div style={{height:"1px"}}> 
+    <div style={{display:(prop.loading)?"block":"none"}} className="loadingIndicator">
+</div>
+    <div className="loadingIndicator2">
+</div>
+    <div className="loadingIndicator3">
+</div>
 
+</div>
+</div>
 	)
 
 

@@ -9,6 +9,7 @@ import Login from './login';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 var firebaseUtils = require('../utils/firebaseUtils');
 import Register from './register';
+import Occupation from './occupation'
 
 class Main extends React.Component {
 
@@ -16,12 +17,11 @@ constructor(props){
 
   super(props);
 
-  this.state = {arr:['','','','','',''],img:"", flagToggle:false, isLoggedIn:firebaseUtils.isLoggedIn()}
+  this.state = {arr:['','','','','',''],img:"", flagToggle:false, isLoggedIn:firebaseUtils.isLoggedIn(),loading:true}
 }
 
 handleLogout(loggedIn){
 
-console.log(loggedIn,"fgfgfgfgfg");
 
   this.setState({
       isLoggedIn: loggedIn
@@ -66,18 +66,22 @@ logOutProba(){
 
 
 }
+
+loadingCallback(bool){
+
+  this.setState({loading:bool});
+}
+
 render () {
 var that = this;
 return (
 <div className="chart">
-<Header logOutProba={this.logOutProba.bind(this)} isLoggedIn={this.state.isLoggedIn} imgLogo={that.state.img} toggleMenu={this.toggleMenu.bind(this)} flagToggle={this.state.flagToggle}/>
+<Header logOutProba={this.logOutProba.bind(this)} loading={this.state.loading} isLoggedIn={this.state.isLoggedIn} imgLogo={that.state.img} toggleMenu={this.toggleMenu.bind(this)} flagToggle={this.state.flagToggle}/>
 <div className="obrus">
 <div className="padding">
   {this.props.children && React.cloneElement(this.props.children, {
-            reta: "ffffff", glState:this.pushToState.bind(this), json:this.state.json,loginCallback:this.handleLogin.bind(this)
+            reta: "ffffff", glState:this.pushToState.bind(this),loading:this.state.loading, loadingCallback:this.loadingCallback.bind(this), json:this.state.json,loginCallback:this.handleLogin.bind(this)
           })}
-
-
 </div>
 </div>
 <Sidebar arr={this.state.arr} />
@@ -85,26 +89,7 @@ return (
 </div>
 
    );
-
  }
-
-}
-
-
-class Occupation extends React.Component{
-  constructor(props) {
-    super(props);
-  }
-
-render(){
-
-return(
-<div>
-  {this.props.params.occupation}
-</div>
-)
-
-}
 
 }
 
@@ -112,11 +97,11 @@ const app = document.getElementById('app');
 ReactDOM.render(<Router history={browserHistory}>
 <Route path="/"  component={Main} >
   <IndexRoute component={ListMain}/>
-  <Route path="/list" pushTo={parent.pushToState}  component={ListMain} />
-  <Route path="/mentor" pushTo={77} component={Second} />
-  <Route path="/login" loginCallback = {parent.handleLogin} component={Login} />
-    <Route path="/register" loginCallback = {parent.handleLogin}  component={Register} />
+  <Route path="/list"   component={ListMain} />
+  <Route path="/mentor" component={Second} />
+  <Route path="/login" component={Login} />
+   <Route path="/register" component={Register} />
 
-  <Route path="/ocupation/:occupation" pushTo={77} component={Occupation} />
+  <Route path="/ocupation/:occupation" component={Occupation} />
 </Route>
   </Router>, app);

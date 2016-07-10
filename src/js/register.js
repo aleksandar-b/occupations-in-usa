@@ -10,6 +10,16 @@ var Register = React.createClass({
       displaySecond:(this.props.register)?"block":"none"
     }
   },
+    componentWillMount:function() {
+    this.props.loadingCallback(true);
+  },
+  
+  componentDidMount:function() {
+    this.props.loadingCallback(false);
+  },
+   componentWillUnmount:function() {
+	  this.props.loadingCallback(true);
+  },
   handleSubmit: function(e){
     e.preventDefault();
     var email = this.refs.email.value;

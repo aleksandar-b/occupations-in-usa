@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+var Ink = require('react-ink');
+
 import {
 	Router,
 	Route,
@@ -13,17 +15,14 @@ class Item extends React.Component {
 	constructor(props) {
 		super(props)
 	}
+	
 
-	componentDidMount() {
+	
 
 
+	handleMouseDown(param,salary,e) {
 
-
-	}
-
-	handleMouseDown(e) {
-
-		var chart = document.querySelector('.obrus');
+	/*	var chart = document.getElementsByClassName('obrus')[0];
 		effectNode = document.createElement('div');
 		effectNode.className = 'circleEffect';
 
@@ -37,23 +36,29 @@ class Item extends React.Component {
 
 		eff.addEventListener('animationend', function() {
 			this.style.opacity = 0;
-			setTimeout(function() {
 
 				this.parentNode.removeChild(this);
 
-			}.bind(this), 600)
+
+		})*/		
+		localStorage.setItem('--occupation',salary)
+		this.props.handleClick();
+
+				this.props.loadingCallback(true)
+
+browserHistory.push('/ocupation/'+param);
 
 
-		})
 
 
 
 
 	}
 
-	handleClick() {
+	handleClick(param) {
 
-		this.props.handleClick();
+
+
 
 
 	}
@@ -62,35 +67,35 @@ class Item extends React.Component {
 
 
 
-		return ( < Link to = {
+		return ( /*< Link to = {
 				"/ocupation/" + this.props.email
-			} >
+			} >*/
 			<
 			div className = "hover1"
 			onMouseDown = {
-				this.handleMouseDown.bind(this)
+				this.handleMouseDown.bind(this,this.props.email,this.props.salary)
 			}
 			onMouseUp = {
-				this.handleClick.bind(this)
+				this.handleClick.bind(this,this.props.email)
 			} >
 
 			<
 			div className = "de" > {
 				this.props.email
 			} < /div>  <
-			div ref = "circle"
+			div /*ref = "circle"*/
 			className = "ret"
 			style = {
 				{
-					width: parseInt(this.props.salary.slice(1)) * 3 + 'px'
+					width: parseInt(this.props.salary.slice(1)) * 2.5 + 'px'
 				}
 			} > {
 				this.props.salary
 			} < /div>
 
 			<
-			/div> <
-			/Link > 
+			/div> 
+			/*</Link > */
 
 		)
 

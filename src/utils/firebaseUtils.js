@@ -119,6 +119,7 @@ var firebaseUtils = {
     ref.unauth();
     cachedUser = null;
     this.onChange(false);
+    
   }
 };
 

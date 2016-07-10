@@ -86,6 +86,10 @@
 	
 	var _register2 = _interopRequireDefault(_register);
 	
+	var _occupation = __webpack_require__(229);
+	
+	var _occupation2 = _interopRequireDefault(_occupation);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -104,15 +108,13 @@
 	
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this, props));
 	
-	    _this.state = { arr: ['', '', '', '', '', ''], img: "", flagToggle: false, isLoggedIn: firebaseUtils.isLoggedIn() };
+	    _this.state = { arr: ['', '', '', '', '', ''], img: "", flagToggle: false, isLoggedIn: firebaseUtils.isLoggedIn(), loading: true };
 	    return _this;
 	  }
 	
 	  _createClass(Main, [{
 	    key: 'handleLogout',
 	    value: function handleLogout(loggedIn) {
-	
-	      console.log(loggedIn, "fgfgfgfgfg");
 	
 	      this.setState({
 	        isLoggedIn: loggedIn
@@ -156,13 +158,19 @@
 	      firebaseUtils.logout();
 	    }
 	  }, {
+	    key: 'loadingCallback',
+	    value: function loadingCallback(bool) {
+	
+	      this.setState({ loading: bool });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var that = this;
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'chart' },
-	        _react2.default.createElement(_header2.default, { logOutProba: this.logOutProba.bind(this), isLoggedIn: this.state.isLoggedIn, imgLogo: that.state.img, toggleMenu: this.toggleMenu.bind(this), flagToggle: this.state.flagToggle }),
+	        _react2.default.createElement(_header2.default, { logOutProba: this.logOutProba.bind(this), loading: this.state.loading, isLoggedIn: this.state.isLoggedIn, imgLogo: that.state.img, toggleMenu: this.toggleMenu.bind(this), flagToggle: this.state.flagToggle }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'obrus' },
@@ -170,7 +178,7 @@
 	            'div',
 	            { className: 'padding' },
 	            this.props.children && _react2.default.cloneElement(this.props.children, {
-	              reta: "ffffff", glState: this.pushToState.bind(this), json: this.state.json, loginCallback: this.handleLogin.bind(this)
+	              reta: "ffffff", glState: this.pushToState.bind(this), loading: this.state.loading, loadingCallback: this.loadingCallback.bind(this), json: this.state.json, loginCallback: this.handleLogin.bind(this)
 	            })
 	          )
 	        ),
@@ -182,30 +190,6 @@
 	  return Main;
 	}(_react2.default.Component);
 	
-	var Occupation = function (_React$Component2) {
-	  _inherits(Occupation, _React$Component2);
-	
-	  function Occupation(props) {
-	    _classCallCheck(this, Occupation);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Occupation).call(this, props));
-	  }
-	
-	  _createClass(Occupation, [{
-	    key: 'render',
-	    value: function render() {
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        this.props.params.occupation
-	      );
-	    }
-	  }]);
-	
-	  return Occupation;
-	}(_react2.default.Component);
-	
 	var app = document.getElementById('app');
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -214,11 +198,11 @@
 	    _reactRouter.Route,
 	    { path: '/', component: Main },
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _list2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/list', pushTo: parent.pushToState, component: _list2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/mentor', pushTo: 77, component: _second2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/login', loginCallback: parent.handleLogin, component: _login2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/register', loginCallback: parent.handleLogin, component: _register2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/ocupation/:occupation', pushTo: 77, component: Occupation })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/list', component: _list2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/mentor', component: _second2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _login2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/register', component: _register2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/ocupation/:occupation', component: _occupation2.default })
 	  )
 	), app);
 
@@ -19214,6 +19198,11 @@
 				return this.state.shouldRec;
 			}
 		}, {
+			key: 'componentWillUnmount',
+			value: function componentWillUnmount() {
+				this.props.loadingCallback(true);
+			}
+		}, {
 			key: 'componentDidMount',
 			value: function componentDidMount() {
 				var _this2 = this;
@@ -19238,7 +19227,6 @@
 						sidebar.style.position = 'relative';
 					}
 				});
-				console.log(this.state.friends.length);
 	
 				if (!this.props.json) {
 					var myHeaders = new Headers();
@@ -19250,6 +19238,7 @@
 					}).then(function (json) {
 						//	this.props.glState(json);
 						cube.style.display = "none";
+						_this2.props.loadingCallback(false);
 	
 						fade.classList.add('Ifade');
 	
@@ -19287,6 +19276,10 @@
 						{ key: ind + ind },
 						' ',
 						_react2.default.createElement(_item2.default, {
+							loadingCallback: function loadingCallback() {
+								return _this3.props.loadingCallback(true);
+							},
+	
 							pushToPar: this.props.pushTo,
 							email: val['name'],
 							salary: val['salary'].replace(/>=/i, ''),
@@ -19301,22 +19294,35 @@
 	
 				return _react2.default.createElement(
 					'div',
-					{ className: 'IfadeI' },
+					null,
 					_react2.default.createElement(
 						'div',
-						{ className: 'sk-cube-grid' },
-						_react2.default.createElement('div', { className: 'sk-cube sk-cube1' }),
-						_react2.default.createElement('div', { className: 'sk-cube sk-cube2' }),
-						_react2.default.createElement('div', { className: 'sk-cube sk-cube3' }),
-						_react2.default.createElement('div', { className: 'sk-cube sk-cube4' }),
-						_react2.default.createElement('div', { className: 'sk-cube sk-cube5' }),
-						_react2.default.createElement('div', { className: 'sk-cube sk-cube6' }),
-						_react2.default.createElement('div', { className: 'sk-cube sk-cube7' }),
-						_react2.default.createElement('div', { className: 'sk-cube sk-cube8' }),
-						_react2.default.createElement('div', { className: 'sk-cube sk-cube9' })
+						{ style: { margin: "10 auto", textAlign: "center" } },
+						_react2.default.createElement(
+							'h2',
+							null,
+							'820 Occupations in USA'
+						)
 					),
-					friends,
-					' '
+					_react2.default.createElement(
+						'div',
+						{ style: { padding: "20px" }, className: 'IfadeI' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'sk-cube-grid' },
+							_react2.default.createElement('div', { className: 'sk-cube sk-cube1' }),
+							_react2.default.createElement('div', { className: 'sk-cube sk-cube2' }),
+							_react2.default.createElement('div', { className: 'sk-cube sk-cube3' }),
+							_react2.default.createElement('div', { className: 'sk-cube sk-cube4' }),
+							_react2.default.createElement('div', { className: 'sk-cube sk-cube5' }),
+							_react2.default.createElement('div', { className: 'sk-cube sk-cube6' }),
+							_react2.default.createElement('div', { className: 'sk-cube sk-cube7' }),
+							_react2.default.createElement('div', { className: 'sk-cube sk-cube8' }),
+							_react2.default.createElement('div', { className: 'sk-cube sk-cube9' })
+						),
+						friends,
+						' '
+					)
 				);
 			}
 		}]);
@@ -19767,124 +19773,135 @@
 	        var email = storage.password.email || "";
 	    }
 	
-	    console.log("header");
-	    console.log(prop.isLoggedIn, "header");
 	    var isLoggedIn = prop.isLoggedIn ? "none" : "inline-block";
 	    var menuDisplay = prop.isLoggedIn ? "block" : "none";;
-	
+	    console.log(prop.loading);
 	    var display = prop.flagToggle ? "block" : "none";
 	
 	    var handleClick = function handleClick() {
+	
 	        prop.toggleMenu();
 	    };
 	    var logOut = function logOut() {
 	
 	        prop.logOutProba();
+	        window.location.href = "/";
 	    };
 	
 	    return _react2.default.createElement(
-	        'header',
+	        'div',
 	        null,
 	        _react2.default.createElement(
-	            'ul',
-	            { id: 'header' },
+	            'header',
+	            null,
 	            _react2.default.createElement(
-	                'li',
-	                null,
+	                'ul',
+	                { id: 'header' },
 	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { className: 'fontHed', to: '/list' },
-	                    'List'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { className: 'fontHed', to: '/mentor' },
-	                    _react2.default.createElement('i', { className: 'fa fa-bar-chart' }),
-	                    'Mentor'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { className: 'fontHed', to: '/' },
+	                    'li',
+	                    null,
 	                    _react2.default.createElement(
-	                        'span',
-	                        { className: 'white  font' },
-	                        ' '
-	                    ),
-	                    ' Occupations In USA'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'li',
-	                { style: { display: isLoggedIn } },
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { className: 'fontHed', to: '/login' },
-	                    _react2.default.createElement('i', { className: 'fa fa-user' }),
-	                    'Login'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'li',
-	                { style: { display: isLoggedIn } },
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { className: 'fontHed', to: '/register' },
-	                    _react2.default.createElement('i', { className: 'fa fa-user' }),
-	                    'Register'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'span',
-	                { onClick: handleClick, className: 'User', style: { display: menuDisplay, float: "right", height: "85%", fontSize: "13px", color: "white", cursor: "pointer", marginRight: "6px", paddingLeft: "6px" } },
-	                _react2.default.createElement(Ink, null),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'dropdown', style: { display: display } },
-	                    _react2.default.createElement(
-	                        'p',
-	                        { style: { display: email, padding: "5px 16px 5px 16px" } },
-	                        ' ',
-	                        _react2.default.createElement(Ink, null),
-	                        email
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        { style: { position: "relative", padding: "5px 0 5px 0" } },
-	                        ' ',
-	                        _react2.default.createElement(Ink, null),
-	                        'Account'
-	                    ),
-	                    ' ',
-	                    _react2.default.createElement(
-	                        'p',
-	                        { style: { position: "relative", padding: "5px 0 5px 0" } },
-	                        ' ',
-	                        _react2.default.createElement(Ink, null),
-	                        'Settings'
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        { style: { position: "relative", padding: "5px 0 5px 0" }, onClick: logOut },
-	                        ' ',
-	                        _react2.default.createElement(Ink, null),
-	                        'Logout'
+	                        _reactRouter.Link,
+	                        { className: 'fontHed', to: '/list' },
+	                        'List'
 	                    )
 	                ),
-	                _react2.default.createElement('img', { style: { float: "left", height: "95%", margin: "auto 6px auto 0px", borderRadius: "50%" }, src: img }),
+	                _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { className: 'fontHed', to: '/mentor' },
+	                        _react2.default.createElement('i', { className: 'fa fa-bar-chart' }),
+	                        'Mentor'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { className: 'fontHed', to: '/' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'white  font' },
+	                            ' '
+	                        ),
+	                        ' Occupations In USA'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    { style: { display: isLoggedIn } },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { className: 'fontHed', to: '/login' },
+	                        _react2.default.createElement('i', { className: 'fa fa-user' }),
+	                        'Login'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    { style: { display: isLoggedIn } },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { className: 'fontHed', to: '/register' },
+	                        _react2.default.createElement('i', { className: 'fa fa-user' }),
+	                        'Register'
+	                    )
+	                ),
 	                _react2.default.createElement(
 	                    'span',
-	                    { style: { paddingTop: "4px", paddingRight: "2px", display: "inline-block" } },
-	                    email
+	                    { onClick: handleClick, className: 'User', style: { display: menuDisplay, float: "right", height: "85%", fontSize: "13px", color: "white", cursor: "pointer", marginRight: "6px", paddingLeft: "6px" } },
+	                    _react2.default.createElement(Ink, null),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'dropdown', style: { display: display } },
+	                        _react2.default.createElement(
+	                            'p',
+	                            { style: { display: email, padding: "5px 16px 5px 16px" } },
+	                            ' ',
+	                            _react2.default.createElement(Ink, null),
+	                            email
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { style: { position: "relative", padding: "5px 0 5px 0" } },
+	                            ' ',
+	                            _react2.default.createElement(Ink, null),
+	                            'Account'
+	                        ),
+	                        ' ',
+	                        _react2.default.createElement(
+	                            'p',
+	                            { style: { position: "relative", padding: "5px 0 5px 0" } },
+	                            ' ',
+	                            _react2.default.createElement(Ink, null),
+	                            'Settings'
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { style: { position: "relative", padding: "5px 0 5px 0" }, onClick: logOut },
+	                            ' ',
+	                            _react2.default.createElement(Ink, null),
+	                            'Logout'
+	                        )
+	                    ),
+	                    _react2.default.createElement('img', { style: { float: "left", height: "95%", margin: "auto 6px auto 0px", borderRadius: "50%" }, src: img }),
+	                    _react2.default.createElement(
+	                        'span',
+	                        { style: { paddingTop: "4px", paddingRight: "2px", display: "inline-block" } },
+	                        email
+	                    )
 	                )
 	            )
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { style: { height: "1px" } },
+	            _react2.default.createElement('div', { style: { display: prop.loading ? "block" : "none" }, className: 'loadingIndicator' }),
+	            _react2.default.createElement('div', { className: 'loadingIndicator2' }),
+	            _react2.default.createElement('div', { className: 'loadingIndicator3' })
 	        )
 	    );
 	};
@@ -25864,6 +25881,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var Ink = __webpack_require__(219);
+	
 	var effectNode;
 	
 	var Item = function (_React$Component) {
@@ -25876,50 +25895,42 @@
 		}
 	
 		_createClass(Item, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {}
-		}, {
 			key: 'handleMouseDown',
-			value: function handleMouseDown(e) {
+			value: function handleMouseDown(param, e) {
 	
-				var chart = document.querySelector('.obrus');
-				effectNode = document.createElement('div');
-				effectNode.className = 'circleEffect';
+				/*	var chart = document.getElementsByClassName('obrus')[0];
+	   	effectNode = document.createElement('div');
+	   	effectNode.className = 'circleEffect';
+	   		var bounds = ReactDOM.findDOMNode(this).getBoundingClientRect();
+	   		//effectNode.style.background = 'hsl(' + Math.round(Math.random() * 255) + ', 26%,62%)';
+	   	effectNode.style.left = e.clientX + 'px';
+	   	effectNode.style.top = bounds.top+window.scrollY-20 + bounds.height / 2 + 'px';
+	   		var eff = chart.appendChild(effectNode);
+	   		eff.addEventListener('animationend', function() {
+	   		this.style.opacity = 0;
+	   				this.parentNode.removeChild(this);
+	   
+	   	})*/this.props.handleClick();
 	
-				var bounds = _reactDom2.default.findDOMNode(this).getBoundingClientRect();
+				this.props.loadingCallback(true);
 	
-				//effectNode.style.background = 'hsl(' + Math.round(Math.random() * 255) + ', 26%,62%)';
-				effectNode.style.left = e.clientX + 'px';
-				effectNode.style.top = bounds.top + window.scrollY - 20 + bounds.height / 2 + 'px';
-	
-				var eff = chart.appendChild(effectNode);
-	
-				eff.addEventListener('animationend', function () {
-					this.style.opacity = 0;
-					setTimeout(function () {
-	
-						this.parentNode.removeChild(this);
-					}.bind(this), 600);
-				});
+				_reactRouter.browserHistory.push('/ocupation/' + param);
 			}
 		}, {
 			key: 'handleClick',
-			value: function handleClick() {
-	
-				this.props.handleClick();
-			}
+			value: function handleClick(param) {}
 		}, {
 			key: 'render',
 			value: function render() {
 	
-				return _react2.default.createElement(
-					_reactRouter.Link,
-					{ to: "/ocupation/" + this.props.email },
+				return (/*< Link to = {
+	          "/ocupation/" + this.props.email
+	          } >*/
 					_react2.default.createElement(
 						'div',
 						{ className: 'hover1',
-							onMouseDown: this.handleMouseDown.bind(this),
-							onMouseUp: this.handleClick.bind(this) },
+							onMouseDown: this.handleMouseDown.bind(this, this.props.email),
+							onMouseUp: this.handleClick.bind(this, this.props.email) },
 						_react2.default.createElement(
 							'div',
 							{ className: 'de' },
@@ -25930,17 +25941,18 @@
 						'  ',
 						_react2.default.createElement(
 							'div',
-							{ ref: 'circle',
+							{ /*ref = "circle"*/
 								className: 'ret',
 								style: {
-									width: parseInt(this.props.salary.slice(1)) * 3 + 'px'
+									width: parseInt(this.props.salary.slice(1)) * 2.5 + 'px'
 								} },
 							' ',
 							this.props.salary,
 							' '
 						)
-					),
-					' '
+					)
+					/*</Link > */
+	
 				);
 			}
 		}]);
@@ -26174,7 +26186,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -26198,45 +26210,60 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Second = function (_React$Component) {
-		_inherits(Second, _React$Component);
+	  _inherits(Second, _React$Component);
 	
-		function Second(props) {
-			_classCallCheck(this, Second);
+	  function Second(props) {
+	    _classCallCheck(this, Second);
 	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Second).call(this, props));
-		}
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Second).call(this, props));
+	  }
 	
-		_createClass(Second, [{
-			key: 'handleClick',
-			value: function handleClick() {
+	  _createClass(Second, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.loadingCallback(true);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.props.loadingCallback(true);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.loadingCallback(false);
+	    }
+	  }, {
+	    key: 'handleClick',
+	    value: function handleClick() {
 	
-				console.log(this.props.email);
-				this.props.pushToPar();
-			}
-		}, {
-			key: 'render',
-			value: function render() {
+	      console.log(this.props.email);
+	      this.props.pushToPar();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
 	
-				return _react2.default.createElement(
-					'div',
-					null,
-					'fffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-					_react2.default.createElement(
-						'h2',
-						null,
-						this.props.params.occupation
-					)
-				);
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'fffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          this.props.params.occupation
+	        )
+	      );
 	
-				/*
-	   	return (
-	   	<div className="hover1" ref="ff"><div className="de">{this.props.email}</div><div className="ret"  style={width:'250px'} > {this.props.salary} </div></div>
-	   )
-	   */
-			}
-		}]);
+	      /*
+	      	return (
+	      	<div className="hover1" ref="ff"><div className="de">{this.props.email}</div><div className="ret"  style={width:'250px'} > {this.props.salary} </div></div>
+	      )
+	      */
+	    }
+	  }]);
 	
-		return Second;
+	  return Second;
 	}(_react2.default.Component);
 	
 	exports.default = Second;
@@ -26305,11 +26332,23 @@
 	  contextTypes: {
 	    router: React.PropTypes.object.isRequired
 	  },
+	
 	  getInitialState: function getInitialState() {
 	    return {
 	      error: false,
 	      displaySecond: this.props.register ? "block" : "none"
 	    };
+	  },
+	
+	  componentWillMount: function componentWillMount() {
+	    this.props.loadingCallback(true);
+	  },
+	
+	  componentDidMount: function componentDidMount() {
+	    this.props.loadingCallback(false);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.props.loadingCallback(true);
 	  },
 	  handleSubmit: function handleSubmit(e) {
 	    e.preventDefault();
@@ -26356,6 +26395,7 @@
 	        React.createElement('input', { className: 'email', type: 'text', ref: 'email', placeholder: 'Email' }),
 	        React.createElement('input', { className: 'pass', type: 'password', ref: 'pw', placeholder: 'Password' }),
 	        React.createElement('input', { style: { display: this.state.displaySecond }, className: 'pass2', type: 'password', ref: 'pw2', placeholder: 'Password' }),
+	        errors,
 	        React.createElement('input', { className: 'submit', type: 'submit', value: 'Login' })
 	      )
 	    );
@@ -26383,6 +26423,16 @@
 	      error: false,
 	      displaySecond: this.props.register ? "block" : "none"
 	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    this.props.loadingCallback(true);
+	  },
+	
+	  componentDidMount: function componentDidMount() {
+	    this.props.loadingCallback(false);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.props.loadingCallback(true);
 	  },
 	  handleSubmit: function handleSubmit(e) {
 	    e.preventDefault();
@@ -26437,6 +26487,281 @@
 	});
 	
 	module.exports = Register;
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Occupation = function (_React$Component) {
+	  _inherits(Occupation, _React$Component);
+	
+	  function Occupation(props) {
+	    _classCallCheck(this, Occupation);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Occupation).call(this, props));
+	
+	    _this.state = { year: 1922 };
+	    return _this;
+	  }
+	
+	  _createClass(Occupation, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.loadingCallback(true);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.props.loadingCallback(true);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.loadingCallback(false);
+	
+	      //inspiration //https://vimeo.com/77330591#t=80s
+	      var svg = document.querySelector('.small');
+	
+	      var svg1 = document.querySelector('.rects');
+	
+	      var counter = 0;
+	      var counterLine = 0;
+	      var counterReg = 0;
+	      for (var i = 0; i < 300; i++) {
+	        var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+	        var random = Math.floor(Math.random() * (200 - 20)) + 20;
+	        var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+	
+	        var line2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+	
+	        line.setAttribute("x1", "0");
+	        line.setAttribute("x2", "3000");
+	        line.setAttribute("y1", counterLine);
+	        line.setAttribute("y2", counterLine);
+	        line.setAttribute("stroke-width", "1");
+	        line.classList.add('crisp');
+	        line.setAttribute("stroke", "white");
+	
+	        line2.setAttribute("x1", counterLine);
+	        line2.setAttribute("x2", counterLine);
+	        line2.setAttribute("y1", "0");
+	        line2.setAttribute("y2", "1000");
+	        line2.setAttribute("stroke-width", "1");
+	
+	        line2.classList.add('crisp');
+	        line2.setAttribute("stroke", "white");
+	
+	        rect.classList.add("rect");
+	        rect.setAttribute("x", counter);
+	        rect.setAttribute("y", "220" - random);
+	        rect.setAttribute("fill", "white");
+	        rect.setAttribute("width", "7.16");
+	        rect.setAttribute("height", random);
+	        /*rect.setAttribute("stroke-width", "3");
+	        rect.setAttribute("stroke", "white");*/
+	        // rect.style.animationDelay = (counterReg*3)+'0ms'; //animation Delay
+	        counterLine = counterLine + 44;
+	
+	        svg1.appendChild(rect);
+	        if (counterReg === 5) {
+	          line.setAttribute("stroke-width", "2");
+	          line.setAttribute("style", "opacity:.2");
+	        }
+	        if (counterLine < 500) {
+	          svg.appendChild(line);
+	        }
+	        counterReg++;
+	        if (counterLine < 1500) {
+	          svg.appendChild(line2);
+	        }
+	        counter = counter + 8.88;
+	      }
+	
+	      svg1.classList.add('translate');
+	
+	      var rectsArray = Array.from(document.querySelectorAll('rect'));
+	      /*  Array.from(rectsArray).forEach(function(val){
+	        
+	          val.classList.add('animation');
+	          
+	          
+	          if(typeof window.MozPowerManager === "function"){
+	            val.style.transformOrigin = "2px";
+	          }
+	          
+	        });*/
+	
+	      var countereee = 0;
+	      var lengthRects = rectsArray.length;
+	      var that = this;
+	      var raf = window.requestAnimationFrame(function name() {
+	
+	        rectsArray[countereee].classList.add('animation');
+	        countereee++;
+	        if (countereee % 3 === 0) {
+	          that.setState({ year: that.state.year + 1 });
+	        }
+	        if (countereee === lengthRects) {
+	
+	          window.cancelAnimationFrame(raf);
+	        }
+	        window.requestAnimationFrame(name);
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { style: { textAlign: "center", fontSize: "1.8em" } },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          ' ',
+	          this.props.params.occupation,
+	          ' '
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'tr' },
+	          _react2.default.createElement(
+	            'svg',
+	            { version: '1.1', xmlns: 'http://www.w3.org/2000/svg', className: 'small', viewBox: '0 0 1200 460', preserveAspectRatio: 'xMidYMin meet' },
+	            _react2.default.createElement('use', { xlinkHref: '#viewBoxBorder' }),
+	            _react2.default.createElement('g', { className: 'rects' }),
+	            _react2.default.createElement(
+	              'g',
+	              { className: 'text' },
+	              _react2.default.createElement(
+	                'text',
+	                { x: '250', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Jul'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '350', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Sep'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '450', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Oct'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '550', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Nov'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '650', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Dec'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '750', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Jan'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '850', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Feb'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '950', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Mar'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '1050', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Apr'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '1150', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'May'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '1250', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Jun'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '1350', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Jul'
+	              ),
+	              _react2.default.createElement(
+	                'text',
+	                { x: '1450', y: '150',
+	                  fontFamily: 'Verdana',
+	                  fontSize: '16' },
+	                'Avg'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'h1',
+	            { className: 'year', style: { fontSize: "10em" } },
+	            '  ',
+	            this.state.year,
+	            ' '
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Occupation;
+	}(_react2.default.Component);
+	
+	exports.default = Occupation;
 
 /***/ }
 /******/ ]);
