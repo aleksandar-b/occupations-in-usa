@@ -654,6 +654,7 @@ height:100vh;
     position: absolute;
     top: 49.99%;
     left: 49.99%;
+    will-change: transform, opacity;
     transform: translateX(-50%);
     -webkit-font-smoothing: subpixel-antialiased;
     animation: down 1s ease-out;
@@ -960,21 +961,38 @@ transform:scale3d(1,0,1);
 
     animation-fill-mode: forwards;
   }
+.floatingButton{
+    transition:all 400ms ease-out;
 
-  .floatingButton:hover{
-box-shadow: "0 0 4px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.9)";
-  }
-  
-  .iTag{
 
-  }
-
-.iTag:hover{
-
-transform:rotate(220deg) !important;
 
 }
+  .floatingButton:active{
+box-shadow: "0 0 4px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.9)";
+transform:rotate(520deg) scale(.9);
+transition-timing-function:ease-out;
+transition-duration:.5s
+  }
 
+
+  .hiphop{
+    animation: hiphop 400ms ease-out;
+    transition:all 400ms ease-out;
+    animation-fill-mode: forwards; 
+  }
+
+@keyframes hiphop {
+
+0%{
+  transform:scale3d(1,1,1);
+}
+  50%{
+    transform:scale3d(0,0,0);
+   
+  }
+  100%{transform:scale3d(1,1,1);
+}
+}
   @keyframes heartRate {
   0.00% {transform: translate3d(10.20px, 0, 0) scale(0.898);}
   10.77% {transform: translate3d(-22.52px, 0, 0) scale(1.2252);}
@@ -993,6 +1011,7 @@ transform:rotate(220deg) !important;
     color: #fff;
     margin: 10px;
   }
+
 </style>
 
 <body>

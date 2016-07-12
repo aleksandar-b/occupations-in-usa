@@ -8,9 +8,21 @@ import FloatingButton from './floatingbutton';
 
 var NavigationTabs = class NavigationTabs extends React.Component {
 
-  handleClick(){
 
+constructor(props){
+super(props)
+this.counter = 0;
+
+}
+
+  handleClick(){
+ 
+let circle = document.querySelector('.floatingButton');
+let colorMaterial = ['FF5722','03A9F4','f44336','4CAF50'];
+circle.style.background = '#'+colorMaterial[this.counter%3];
+circle.classList.toggle('hiphop');
 this.props.glState();
+this.counter++;
 
   }
   
@@ -19,6 +31,7 @@ this.props.glState();
       var groups =  <TabGroup>
      
         <Tab onClick={this.handleClick.bind(this)}>
+        <Ink />
           Schools
         </Tab>
      
@@ -26,6 +39,8 @@ this.props.glState();
         <div>
 
         <Tab onClick={this.handleClick.bind(this)}>
+                <Ink />
+
      Videos
      
         </Tab>
@@ -34,9 +49,13 @@ this.props.glState();
 
 
           <Tab onClick={this.handleClick.bind(this)}>
+                  <Ink />
+
           Mentors
         </Tab>
            <Tab onClick={this.handleClick.bind(this)}>
+                   <Ink />
+
           VR
         </Tab>
       </TabGroup>;

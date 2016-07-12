@@ -18,8 +18,14 @@ import Ink from 'react-ink';
 
          var effectNode = document.createElement('div');
          effectNode.className = 'circleEffect';
+var rElem = ReactDOM.findDOMNode(this);
+         var bounds = rElem.getBoundingClientRect();
 
-         var bounds = ReactDOM.findDOMNode(this).getBoundingClientRect();
+             rElem.addEventListener('animationend', function() {
+             this.classList.toggle('hiphop');
+
+         });
+
          effectNode.style.zIndex = "100";
          //effectNode.style.background = 'hsl(' + Math.round(Math.random() * 255) + ', 26%,62%)';
          effectNode.style.left = (bounds.left + bounds.width / 2) + 'px';
@@ -51,6 +57,8 @@ import Ink from 'react-ink';
 
          let circle = document.querySelector('.circleEffect');
          let overflow = document.querySelector('.overflowClass');
+     
+         overflow.style.top = window.scrollY+"px";
          overflow.style.width = "100%";
          overflow.style.height = "100vh";
          circle.classList.add('addAnimation');
@@ -65,7 +73,7 @@ import Ink from 'react-ink';
 
      render() {
          return ( <
-             div onClick = {
+             a onClick = {
                  this.handleClick.bind(this)
              } className="floatingButton"
              style = {
@@ -82,8 +90,8 @@ import Ink from 'react-ink';
                      float: "right",
                      zIndex:"300"
                  }
-             } > <div style={{color:"white",position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)", transformOrigin:"center" }} className="iTag"><i  className="fa fa-plus " aria-hidden="true"></i></div>
- < /div>
+             } > <div style={{color:"white",position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%) scale(1.6)", transformOrigin:"center" }} className="iTag"><i  className="fa fa-plus " aria-hidden="true"></i></div>
+ < /a>
 
          );
      }
