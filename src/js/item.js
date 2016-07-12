@@ -41,12 +41,23 @@ class Item extends React.Component {
 
 
 		})*/		
+			browserHistory.push('/ocupation/'+param);
+/*		var body = document.body;
+		function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+		var random = getRandomInt(1,98);
+		var hslrdm = random / 98 * 360;
+		
+		body.style.background = `url('../img/${random}.png')`;
+		body.style.backgroundColor =  `hsl(${hslrdm}, 50%, 30%)`;
+*/
 		localStorage.setItem('--occupation',salary)
+				localStorage.setItem('-occupation-',param)
+
 		this.props.handleClick();
 
 				this.props.loadingCallback(true)
-
-browserHistory.push('/ocupation/'+param);
 
 
 
@@ -57,6 +68,10 @@ browserHistory.push('/ocupation/'+param);
 
 	handleClick(param) {
 
+setTimeout(function(){
+
+
+},100)
 
 
 
@@ -75,7 +90,7 @@ browserHistory.push('/ocupation/'+param);
 			onMouseDown = {
 				this.handleMouseDown.bind(this,this.props.email,this.props.salary)
 			}
-			onMouseUp = {
+			onClick = {
 				this.handleClick.bind(this,this.props.email)
 			} >
 

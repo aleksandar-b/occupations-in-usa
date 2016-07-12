@@ -84,7 +84,7 @@ return (
           })}
 </div>
 </div>
-<Sidebar arr={this.state.arr} />
+<Sidebar glState={this.pushToState.bind(this)} arr={this.state.arr} />
 
 </div>
 
@@ -100,7 +100,7 @@ ReactDOM.render(<Router history={browserHistory}>
   <Route path="/list"   component={ListMain} />
   <Route path="/mentor" component={Second} />
   <Route path="/login" component={Login} />
-   <Route path="/register" component={Register} />
+  <Route path="/register" component={Register} />
 
   <Route path="/ocupation/:occupation" component={Occupation} />
 </Route>

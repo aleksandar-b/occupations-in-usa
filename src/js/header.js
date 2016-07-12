@@ -32,23 +32,25 @@ var logOut = () => {
 
 
 	return (
-        <div>
+        <div style={{position:"relative",zIndex:"300"}}>
       
 <header>
     <ul id="header">
 
 <li><Link className="fontHed" to="/list">List</Link></li>
-  <li><Link className="fontHed" to="/mentor"><i className="fa fa-bar-chart"></i>Mentor</Link></li>
-  <li><Link className="fontHed" to="/"><span className="white  font"> </span> Occupations In USA</Link></li>
-  <li style={{display:isLoggedIn}}><Link className="fontHed" to="/login"><i className="fa fa-user"></i>Login</Link></li>
+    <li style={{display:isLoggedIn}}><Link className="fontHed" to="/login"><i className="fa fa-user"></i>Login</Link></li>
+
+  <li><Link className="fontHed" to="/" ><span className="white  font"> </span> Occupations In USA</Link></li>
+<li><Link className="fontHed" to="/mentor"><i className="fa fa-bar-chart"></i>Mentor</Link></li>
   <li style={{display:isLoggedIn}}><Link className="fontHed" to="/register"><i className="fa fa-user"></i>Register</Link></li>
 
 <span onClick={handleClick} className="User" style={{display:menuDisplay,float:"right",height:"85%", fontSize:"13px", color:"white", cursor:"pointer",marginRight:"6px",paddingLeft:"6px"}} >
  <Ink />
+
 <div className="dropdown" style={{display:display}}><p style={{ display:email,padding:"5px 16px 5px 16px"}} > <Ink />{email}</p><p style={{position:"relative",padding:"5px 0 5px 0"}}> <Ink />Account</p> <p style={{position:"relative",padding:"5px 0 5px 0"}}> <Ink />Settings</p><p style={{position:"relative",padding:"5px 0 5px 0"}} onClick={logOut}> <Ink />Logout</p></div>
 <img style={{float:"left",height:"95%",margin:"auto 6px auto 0px", borderRadius:"50%"}} src={img}/>
 <span style={{paddingTop:"4px",paddingRight:"2px",display:"inline-block"}}>{email}</span>
-
+<i className="fa fa-chevron-down" style={{margin:"0px 4px 0 2px"}}aria-hidden="true"></i>
     </span></ul>
     </header>
     <div style={{height:"1px"}}> 

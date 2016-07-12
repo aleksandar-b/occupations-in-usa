@@ -9,6 +9,7 @@ import {
 	browserHistory
 } from 'react-router';
 
+
 class ListContainer extends React.Component {
 
 	constructor(props) {
@@ -17,7 +18,6 @@ class ListContainer extends React.Component {
 		this.state = {
 			friends: [],
 			shouldRec: true
-
 		}
 
 
@@ -31,7 +31,9 @@ class ListContainer extends React.Component {
 	}
 
 	componentWillUnmount() {
-		this.props.loadingCallback(true)
+
+		this.props.loadingCallback(true);
+
 	}
 	
 
@@ -67,7 +69,7 @@ myHeaders.append('Content-Type', 'text/json');
 
 			
 
-			fetch('https://gist.githubusercontent.com/samosale/bc0920114e48c1ccccef/raw/7f5e57a0566161732dc555b5aa4b052747e43f78/gistfile1.json')
+			fetch('https://gist.githubusercontent.com/samosale/bc0920114e48c1ccccef/raw/e3bd03045d586f094baef6011cea44228e1301f3/gistfile1.json')
 				.then((response) => {
 
 					return response.json()

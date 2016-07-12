@@ -25,10 +25,11 @@ export default class Occupation extends React.Component{
 var svg = document.querySelector('.small');
 
 var svg1 = document.querySelector('.rects');
-
+var year = document.getElementsByClassName('year')[0];
 var counter = 0;
 var counterLine = 0;
 var counterReg =0;
+var yearCount = 1922;
 for(var i = 0; i<300; i++){
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   var random =  Math.floor(Math.random() * (200 - 20)) + 20;
@@ -63,7 +64,7 @@ for(var i = 0; i<300; i++){
  rect.setAttribute("height", random);
   /*rect.setAttribute("stroke-width", "3");
   rect.setAttribute("stroke", "white");*/
- // rect.style.animationDelay = (counterReg*3)+'0ms'; //animation Delay
+ //rect.style.animationDelay = (counterReg*3)+'0ms'; //animation Delay
  counterLine = counterLine+44;
   
   svg1.appendChild(rect);
@@ -107,7 +108,8 @@ var that= this;
      rectsArray[countereee].classList.add('animation');
       countereee++;
 if(countereee % 3 === 0){
-that.setState({year:that.state.year+1})
+  year.innerHTML = yearCount++;
+//that.setState({year:that.state.year+1})
 }
 if(countereee === lengthRects){
 

@@ -3,25 +3,40 @@ import ReactDOM from 'react-dom';
 import Results from './results';
 import {Tab, TabGroup} from 'material-tabs';
 import Ink from 'react-ink';
+import FloatingButton from './floatingbutton';
  
 
 var NavigationTabs = class NavigationTabs extends React.Component {
+
+  handleClick(){
+
+this.props.glState();
+
+  }
+  
   render() {
+
       var groups =  <TabGroup>
-        <Tab>
+     
+        <Tab onClick={this.handleClick.bind(this)}>
           Schools
         </Tab>
-      <div style={{position:"relative",width:"100%",height:"100%"}}>
-        <Ink/>
-        
-        <Tab>
-          Videos
+     
+       
+        <div>
+
+        <Tab onClick={this.handleClick.bind(this)}>
+     Videos
+     
         </Tab>
-        </div>
-        <Tab>
+        
+     </div>
+
+
+          <Tab onClick={this.handleClick.bind(this)}>
           Mentors
         </Tab>
-         <Tab>
+           <Tab onClick={this.handleClick.bind(this)}>
           VR
         </Tab>
       </TabGroup>;
@@ -50,21 +65,24 @@ export default class Sidebar extends React.Component {
 }
     
 	render(){
+    var Title = (this.props.params)?this.props.params.occupations: localStorage.getItem('-occupation-') || "Orthodontist";
                 
                  var rad = this.state.rad.map(function(val, index){
                     
                     return <Results index={index} key={index+val}/>;
                 });
                 
-		
+
 		return(
 		<div className="e e1">
+    <FloatingButton ><p style={{zIndex:"6000",position:"relative"}}>SAVE THE PLANET</p></FloatingButton>
             <div className="headermin">
               
               <div className="kocka3">
   
               <div className="kocka33">
-                  <h4><a className="animat font" >Programer(IT)</a></h4>
+                  <h4><a className="animat font" >{Title}</a>
+</h4>
               </div>
   
               </div>
@@ -74,7 +92,7 @@ export default class Sidebar extends React.Component {
             
             <div className="center1">
                     <div className="gam3" title="Schools/Courses"></div>
-               <NavigationTabs/>
+               <NavigationTabs glState={this.props.glState.bind(this)}/>
 
             
             </div>
