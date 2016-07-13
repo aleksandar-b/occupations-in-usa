@@ -1,6 +1,7 @@
  import React from 'react';
  import ReactDOM from 'react-dom';
 import Ink from 'react-ink';
+import { browserHistory } from 'react-router';
 
  class FloatingButton extends React.Component {
 
@@ -12,6 +13,7 @@ import Ink from 'react-ink';
          layer.classList.add('overflowClass');
          layer.style.top = "0px";
          layer.style.left = "0px";
+         layer.innerHTML = "<h1 >SAVE THE PLANET!</h1>";
 
          layer.style.zIndex = "200";
          layer.style.overflow = "hidden";
@@ -39,11 +41,11 @@ var rElem = ReactDOM.findDOMNode(this);
          var eff = overflow.appendChild(effectNode);
 
          eff.addEventListener('animationend', function() {
-             this.parentNode.style.width = "0%";
+/*             this.parentNode.style.width = "0%";
              this.parentNode.style.height = "0vh";
              chart.style.overflow = "";
-             this.classList.toggle('addAnimation');
-
+         this.classList.toggle('addAnimation');
+*/
          });
 
 
@@ -57,13 +59,14 @@ var rElem = ReactDOM.findDOMNode(this);
 
          let circle = document.querySelector('.circleEffect');
          let overflow = document.querySelector('.overflowClass');
-     
+    let back = document.querySelector('.backButton');
+circle.classList.add('addAnimation');
+         back.style.display = "block";  
          overflow.style.top = window.scrollY+"px";
          overflow.style.width = "100%";
          overflow.style.height = "100vh";
-         circle.classList.add('addAnimation');
-
-
+         
+         browserHistory.push('/add');
      }
 
 
@@ -72,10 +75,9 @@ var rElem = ReactDOM.findDOMNode(this);
 
 
      render() {
-         return ( <
-             a onClick = {
-                 this.handleClick.bind(this)
-             } className="floatingButton"
+         return (
+             
+              <a onClick = {this.handleClick.bind(this) } className="floatingButton"
              style = {
                  {
                      position: "fixed",
@@ -90,8 +92,7 @@ var rElem = ReactDOM.findDOMNode(this);
                      float: "right",
                      zIndex:"300"
                  }
-             } > <div style={{color:"white",position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%) scale(1.6)", transformOrigin:"center" }} className="iTag"><i  className="fa fa-plus " aria-hidden="true"></i></div>
- < /a>
+             } > <div style={{color:"white",position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%) scale(1.6)", transformOrigin:"center" }} className="iTag"><i  className="fa fa-plus " aria-hidden="true"></i></div></a>
 
          );
      }

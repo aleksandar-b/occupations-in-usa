@@ -117,22 +117,18 @@ myHeaders.append('Content-Type', 'text/json');
 		var friends = this.state.friends.map(function(val, ind) {
 
 			return <div key = {
-				ind+ind
-			} > < Item 
+				ind
+			} > <Item 
 			loadingCallback ={ ()=>this.props.loadingCallback(true)}
 
-			pushToPar = {
-				this.props.pushTo
-			}
+	
 			email = {
 				val['name']
 			}
 			salary = {
-				val['salary'].replace(/>=/i, '')
+				val['salary']
 			}
-			index = {
-				ind
-			}
+		
 			name = {
 				this.props.name
 			}
@@ -147,6 +143,7 @@ myHeaders.append('Content-Type', 'text/json');
 
 		return ( 
 			<div>
+
 			<div style={{margin:"10 auto", textAlign:"center"}}>
 			<h2 >820 Occupations in USA</h2>
 			</div>

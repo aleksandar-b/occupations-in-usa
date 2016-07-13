@@ -13,9 +13,7 @@ var Login = React.createClass({
     }
   },
 
-    componentWillMount:function() {
-    this.props.loadingCallback(true);
-  },
+ 
   
   componentDidMount:function() {
     this.props.loadingCallback(false);

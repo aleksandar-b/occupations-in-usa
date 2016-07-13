@@ -8,9 +8,7 @@ export default class Occupation extends React.Component{
 
 
 
-  componentWillMount() {
-    this.props.loadingCallback(true);
-  }
+  
   componentWillUnmount() {
 	  this.props.loadingCallback(true);
   }

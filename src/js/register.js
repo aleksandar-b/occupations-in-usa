@@ -10,9 +10,7 @@ var Register = React.createClass({
       displaySecond:(this.props.register)?"block":"none"
     }
   },
-    componentWillMount:function() {
-    this.props.loadingCallback(true);
-  },
+    
   
   componentDidMount:function() {
     this.props.loadingCallback(false);
