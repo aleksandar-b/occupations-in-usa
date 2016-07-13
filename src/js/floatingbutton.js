@@ -5,9 +5,12 @@ import { browserHistory } from 'react-router';
 
  class FloatingButton extends React.Component {
 
+
+
+
      componentDidMount() {
 
-         var chart = document.getElementsByTagName('body')[0];
+    /*     var chart = document.getElementsByTagName('body')[0];
          const layer = document.createElement('div');
          layer.style.position = "absolute";
          layer.classList.add('overflowClass');
@@ -20,15 +23,16 @@ import { browserHistory } from 'react-router';
 
          var effectNode = document.createElement('div');
          effectNode.className = 'circleEffect';
-var rElem = ReactDOM.findDOMNode(this);
-         var bounds = rElem.getBoundingClientRect();
 
+         var bounds = rElem.getBoundingClientRect();*/
+         
+var rElem = ReactDOM.findDOMNode(this);
              rElem.addEventListener('animationend', function() {
              this.classList.toggle('hiphop');
 
          });
 
-         effectNode.style.zIndex = "100";
+/*         effectNode.style.zIndex = "100";
          //effectNode.style.background = 'hsl(' + Math.round(Math.random() * 255) + ', 26%,62%)';
          effectNode.style.left = (bounds.left + bounds.width / 2) + 'px';
          effectNode.style.top = bounds.top + window.scrollY  + bounds.height / 2 + 'px';
@@ -41,13 +45,13 @@ var rElem = ReactDOM.findDOMNode(this);
          var eff = overflow.appendChild(effectNode);
 
          eff.addEventListener('animationend', function() {
-/*             this.parentNode.style.width = "0%";
-             this.parentNode.style.height = "0vh";
-             chart.style.overflow = "";
-         this.classList.toggle('addAnimation');
-*/
-         });
+//          this.parentNode.style.width = "0%";
+  //           this.parentNode.style.height = "0vh";
+    //         chart.style.overflow = "";
+      //   this.classList.toggle('addAnimation');
 
+         });
+*/
 
      }
 
@@ -55,7 +59,7 @@ var rElem = ReactDOM.findDOMNode(this);
 
      handleClick(e) {
 
-
+/*
 
          let circle = document.querySelector('.circleEffect');
          let overflow = document.querySelector('.overflowClass');
@@ -64,7 +68,7 @@ circle.classList.add('addAnimation');
          back.style.display = "block";  
          overflow.style.top = window.scrollY+"px";
          overflow.style.width = "100%";
-         overflow.style.height = "100vh";
+         overflow.style.height = "100vh";*/
          
          browserHistory.push('/add');
      }

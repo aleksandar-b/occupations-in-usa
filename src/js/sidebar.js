@@ -15,6 +15,10 @@ this.counter = 0;
 
 }
 
+shouldComponentUpdate(nextProps, nextState) {
+  return false;
+}
+
   handleClick(){
  
 let circle = document.querySelector('.floatingButton');

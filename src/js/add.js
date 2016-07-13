@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+var PackLayout = require('react-layout-pack');
 
 class Add extends Component {
 
@@ -10,10 +11,14 @@ class Add extends Component {
   }
     render() {
         return (
-            <div style={{position:"relative",zIndex:"500"}}>
-                
-                ADD CONTENT HERE
-            </div>
+             <PackLayout tag="ul" className="packed-layout">
+        <li style={{width:"50%"}}>One element</li>
+        <li>Another element</li>
+        <li>A third element</li>
+        <li>A fourth element</li>
+        <li>A fifth element</li>
+    </PackLayout>
+
         );
     }
 }

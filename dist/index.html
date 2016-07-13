@@ -209,7 +209,7 @@
   .hover1:active {
     transition: .0010s linear;
     background: rgba(0, 0, 0, .9);
-    opacity: .2;
+    opacity: .6;
   }
   
   .opacity {
@@ -577,7 +577,7 @@
     will-change: transform;
     background: -webkit-linear-gradient(30deg, rgb(12, 62, 141), #04d9c0);
     background: -o-linear-gradient(30deg, rgb(12, 62, 141), #04d9c0);
-    background: linear-gradient(120deg, rgba(12, 62, 141, .2),rgba(4, 217, 192, .2));
+    background: linear-gradient(120deg, rgba(12, 62, 141, 1),rgba(4, 217, 192, 1));
     width: 240vw;
     height: 240vw;
     opacity: 1;
@@ -609,10 +609,12 @@ height:100vh;
 }  
   @keyframes ripple {
     0% {
-      transform: scale3d(0,0,0);
+      transform: scale3d(0,0,0) ;
+      opacity:0;
     }
     100% {
-      transform: scale3d(1,1,1);
+      transform: scale3d(1,1,1) ;
+      opacity:1;
     }
   }
   
@@ -1011,6 +1013,41 @@ transition-duration:.5s
     color: #fff;
     margin: 10px;
   }
+.addContent{
+animation: add 1s ease;
+//width:100vw;
+//height:100vh;
+background:#795548;
+transform-origin:right bottom;
+}
+
+@keyframes add {
+
+  0%{opacity:0;
+  transform:scale(0);
+  }
+  100%{opacity:1;
+  transform:scale(1)
+  }
+}
+
+.example-enter {
+  opacity: 0.01;
+  transition: opacity 3.5s ease-in;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.example-leave {
+  opacity: 1;
+  transition: opacity 3.5s ease-in;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0;
+}
 
 </style>
 

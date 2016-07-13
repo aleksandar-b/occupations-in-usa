@@ -17,6 +17,12 @@ export default class Occupation extends React.Component{
     this.props.loadingCallback(false);
 
 
+fetch('https://gist.githubusercontent.com/samosale/31024d9b3270c1706895339dad678ecd/raw/89aa30eabf984416e024e2692f3b715f63ecdd1e/random-data.json').then(function(data){
+
+return data.json();
+}).then(function(json){
+
+
 
 
 //inspiration //https://vimeo.com/77330591#t=80s
@@ -28,18 +34,23 @@ var counter = 0;
 var counterLine = 0;
 var counterReg =0;
 var yearCount = 1922;
-for(var i = 0; i<300; i++){
+var pathLine = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+pathLine.setAttribute('stroke',"black");
+pathLine.classList.add('pathLine');
+var pathM = `M0 ${(219 -json[0*3].close)} `;
+for(var i = 0; i<256; i++){
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  var random =  Math.floor(Math.random() * (200 - 20)) + 20;
   var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
   
    var line2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
   
+ pathM += `L${(i*8.91)} ${230 -json[i*3].close/1.3}`;
+
   line.setAttribute("x1", "0");
-    line.setAttribute("x2", "3000");
+  line.setAttribute("x2", "3000");
   line.setAttribute("y1", counterLine);
   line.setAttribute("y2", counterLine);
-   line.setAttribute("stroke-width", "1");
+  line.setAttribute("stroke-width", "1");
   line.classList.add('crisp');
   line.setAttribute("stroke", "white");
   
@@ -56,17 +67,17 @@ for(var i = 0; i<300; i++){
   
   rect.classList.add("rect");
   rect.setAttribute("x", counter);
-  rect.setAttribute("y", "220"-random);
+  rect.setAttribute("y", "396"- +json[i*3].close/1.5);
  rect.setAttribute("fill", "white");
   rect.setAttribute("width", "7.16");
- rect.setAttribute("height", random);
+ rect.setAttribute("height", +json[i*3].close/1.5);
   /*rect.setAttribute("stroke-width", "3");
   rect.setAttribute("stroke", "white");*/
  //rect.style.animationDelay = (counterReg*3)+'0ms'; //animation Delay
  counterLine = counterLine+44;
   
   svg1.appendChild(rect);
-  if(counterReg === 5){
+  if(counterReg === 9){
    line.setAttribute("stroke-width", "2");
     line.setAttribute("style", "opacity:.2");
   }
@@ -82,6 +93,14 @@ counterReg++;
 }
 
 
+pathLine.setAttribute("d",pathM);
+var length = pathLine.getTotalLength();
+
+
+
+pathLine.setAttribute("stroke-dasharray",length);
+
+svg1.appendChild(pathLine);
  
   svg1.classList.add('translate');
 
@@ -118,11 +137,12 @@ if(countereee === lengthRects){
     });
 
 
+});
+
   }
 render(){
 
 var salary = localStorage.getItem('--occupation');
-console.log(salary);
 return(
 
 <div style={{textAlign:"center",fontSize:"1.8em"}}>
@@ -131,6 +151,7 @@ return(
   <div className="tr">
 <svg  version="1.1" xmlns="http://www.w3.org/2000/svg" className="small" viewBox="0 0 1200 460" preserveAspectRatio="xMidYMin meet">
     <use xlinkHref="#viewBoxBorder"/>
+  
   <g className="rects"></g>
   
   <g className="text">

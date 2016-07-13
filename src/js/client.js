@@ -11,6 +11,11 @@ import Register from './register';
 import Occupation from './occupation';
 import BackButton from './backButton';
 import Add from './add';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+
+
+
 
 
 
@@ -83,6 +88,7 @@ toggleBack(){
 render () {
 var that = this;
 return (
+  
 <div className="chart">
 <Header logOutProba={this.logOutProba.bind(this)} loading={this.state.loading} isLoggedIn={this.state.isLoggedIn} imgLogo={that.state.img} toggleMenu={this.toggleMenu.bind(this)} flagToggle={this.state.flagToggle}/>
 <div className="obrus">
